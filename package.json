@@ -1,0 +1,27 @@
+{
+  "name": "electron-superhub-framework",
+  "private": true,
+  "version": "",
+  "description": "electron-superhub app framework",
+  "author": {
+    "name": "wanlitao",
+    "email": "wanlitao_3055601@outlook.com",
+    "url": "https://github.com/electron-superhub"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/electron-superhub/framework.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "electron",
+    "superhub"
+  ],
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },  
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
