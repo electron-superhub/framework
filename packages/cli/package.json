@@ -1,0 +1,43 @@
+{
+  "name": "@electron-superhub/cli",
+  "version": "0.0.1",
+  "description": "electron-superhub cli tools",
+  "author": {
+    "name": "wanlitao",
+    "email": "wanlitao_3055601@outlook.com",
+    "url": "https://github.com/electron-superhub"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/electron-superhub/framework.git",
+    "directory": "packages/cli"
+  },
+  "license": "MIT",
+  "keywords": [
+    "electron",
+    "superhub",
+    "cli"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "unbuild",
+    "prepack": "pnpm build",
+    "publish:ztx": "nrm use ztx && pnpm login && pnpm publish"
+  },  
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "unbuild": "^3.3.1"
+  }
+}
