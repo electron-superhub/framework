@@ -1,7 +1,7 @@
 {
-  "name": "@electron-superhub/cli",
+  "name": "@electron-superhub/core",
   "version": "0.0.1",
-  "description": "electron-superhub cli tools",
+  "description": "electron-superhub core",
   "author": {
     "name": "wanlitao",
     "email": "wanlitao_3055601@outlook.com",
@@ -10,46 +10,32 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/electron-superhub/framework.git",
-    "directory": "packages/cli"
+    "directory": "packages/core"
   },
   "license": "MIT",
   "keywords": [
     "electron",
     "superhub",
-    "cli"
+    "core"
   ],
   "type": "module",
   "exports": {
-    ".": "./dist/index.mjs",
-    "./cli": "./bin/eshi.mjs"
+    ".": "./dist/index.mjs"
   },
   "types": "./dist/index.d.ts",
-  "bin": {
-    "eshi": "./bin/eshi.mjs"
-  },
   "files": [
-    "bin",
     "dist"
   ],
   "scripts": {
     "build": "unbuild",
     "prepack": "pnpm build",
-    "publish:ztx": "nrm use ztx && pnpm login && pnpm publish",
-    "eshi": "node ./bin/eshi.mjs"
+    "publish:ztx": "nrm use ztx && pnpm login && pnpm publish"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "@electron-superhub/core": "workspace:^",
-    "@types/node": "^22.15.29",
-    "citty": "^0.1.6",
-    "consola": "^3.4.2",
-    "pathe": "^2.0.3",
     "typescript": "^5.8.3",
     "unbuild": "^3.5.0"
-  },
-  "dependencies": {
-    "@electron/asar": "^4.0.0"
   }
 }
