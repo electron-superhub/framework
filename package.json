@@ -19,7 +19,7 @@
   ],
   "type": "module",
   "scripts": {
-    "release": "changelogen --release && git push origin main && changelogen gh release"
+    "release": "changelogen --release && changelogen gh release"
   },
   "engines": {
     "node": ">=18.0.0"
