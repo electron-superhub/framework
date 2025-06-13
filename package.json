@@ -1,7 +1,7 @@
 {
   "name": "electron-superhub-framework",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "electron-superhub app framework",
   "author": {
     "name": "wanlitao",
