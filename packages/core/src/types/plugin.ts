@@ -22,7 +22,6 @@ export interface AppPluginInfoBase {
 export interface AppPluginStartOptions {
   binFileDir: string; //bin文件 所在目录
   binFileName: string; //bin文件名称
-  binFileExt?: string; //bin文件扩展名
   cmdArgv?: string[]; //子进程 命令行参数
   cmdPassAppInfo?: boolean; //命令行参数是否传递app信息
   nodeRuntimeArgv?: string[]; //nodejs运行时 参数
