@@ -26,5 +26,9 @@
   },
   "devDependencies": {
     "changelogen": "^0.6.1"
+  },
+  "resolutions": {
+    "env-paths": "^3.0.0",
+    "nanoid": "^5.1.5"
   }
 }

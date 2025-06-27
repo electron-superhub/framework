@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@electron-superhub/core": "workspace:^",
-    "@types/node": "^22.15.29",
+    "@types/node": "^22.15.33",
     "citty": "^0.1.6",
     "consola": "^3.4.2",
     "pathe": "^2.0.3",
