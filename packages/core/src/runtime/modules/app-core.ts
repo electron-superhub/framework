@@ -16,6 +16,7 @@ declare module "../core" {
   interface DefaultAppRuntimeContext {
     getCoreRuntimeKeys(): typeof runtimeKeys_core;
     isAppQuiting(): boolean;
+    isMainWindowCreated(): boolean;
     isMainWindowWebContentsLoaded(): boolean;
   }
 
@@ -26,7 +27,7 @@ const runtimeKeys_core = {
   app_open: "app:open",
   app_quit: "app:quit",
   app_mainWindow: "app:main-window",
-};
+} as const;
 
 class AppCoreInitializer extends AppModuleBase implements AppModule {
   init(context: AppContext): Promise<void> | void {
@@ -59,6 +60,17 @@ class AppCoreInitializer extends AppModuleBase implements AppModule {
         return (
           this.getRuntimeInfoSubValue(runtimeKeys_core.app_quit, ["quiting"]) ??
           false
+        );
+      }
+    );
+
+    DefaultAppRuntimeContext.addExtensionMethod(
+      "isMainWindowCreated",
+      function (): boolean {
+        return (
+          this.getRuntimeInfoSubValue(runtimeKeys_core.app_mainWindow, [
+            "created",
+          ]) ?? false
         );
       }
     );

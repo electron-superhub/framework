@@ -1,6 +1,7 @@
 import { AppContext, AppModule } from "../../types";
 import { LowKVStorage } from "../../storage";
 import { AppStorageBase } from "./storage-base";
+import { registerIpcMainEvent } from "../../core";
 
 const ipcMainEvents_mainKVStorage = {
   app_storage_kv_hasItem: "app:storage:kv:has-item",
@@ -55,11 +56,21 @@ class MainKVStorageProvider extends AppStorageBase implements AppModule {
   init(context: AppContext): Promise<void> | void {
     super.load(context);
 
+    this.registerToIpcMainEvents();
+
     this.mainKV = this.initStorageKV("main");
 
     this.handleKVStorageEvents();
 
     this.registerToIpcRendererEvents();
+  }
+
+  private registerToIpcMainEvents() {
+    Object.entries(ipcMainEvents_mainKVStorage).forEach(
+      ([eventKey, eventName]) => {
+        registerIpcMainEvent(eventKey, eventName);
+      }
+    );
   }
 
   private handleKVStorageEvents() {
