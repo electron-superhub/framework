@@ -35,14 +35,18 @@
     "node": ">=18.0.0"
   },
   "devDependencies": {
+    "@types/semver": "^7.7.0",
+    "await-to-js": "^3.0.0",
     "typescript": "^5.8.3",
     "unbuild": "^3.5.0"
   },
   "dependencies": {
+    "@electron/asar": "^4.0.0",
     "dotenv": "^16.5.0",
     "electron": "^36.6.0",
     "electron-updater": "^6.6.2",
     "env-paths": "^3.0.0",
+    "got": "^14.4.7",
     "lowdb": "^7.0.1",
     "nanoid": "^5.1.5",
     "sift": "^17.1.3",

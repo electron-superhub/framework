@@ -19,6 +19,10 @@ export abstract class AppPluginsBase extends AppModuleBase {
     this.pluginsPath = this.resolvePluginsPath();
   }
 
+  get pluginsRuntimeKey() {
+    return runtimeKeys.app_plugins;
+  }
+
   // #region plugin paths
   protected resolvePluginsPath() {
     const appDataPath = this.runtimeContext.getAppPathsData();
