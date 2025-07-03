@@ -40,6 +40,10 @@ class AppStarter implements PromiseLike<void> {
 
     return this;
   }
+
+  async start() {
+    await this.startPromise;
+  }
 }
 
 export const appStarter = new AppStarter();

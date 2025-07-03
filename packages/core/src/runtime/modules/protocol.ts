@@ -68,6 +68,17 @@ class AppProtocolHandler extends AppModuleBase implements AppModule {
     this.contextIpcMain.on(ipcMainEvents.app_open, (event, argv) => {
       this.checkhandleAppProtocolOpen(argv);
     });
+
+    // 适用于 windows/linux平台 第二实例启动
+    this.contextApp.on("second-instance", (event, argv, workingDirectory) => {
+      this.contextIpcMain.emit(ipcMainEvents.app_open, null, argv);
+    });
+
+    // 适用于 mac平台 首次启动/第二实例启动
+    // open-url 事件必须在 app.ready 之前监听，否则会丢失 首次启动Url参数
+    this.contextApp.on("open-url", (event, url) => {
+      this.contextIpcMain.emit(ipcMainEvents.app_open, null, [url]);
+    });
   }
 
   private checkhandleAppProtocolOpen(argv: string[]) {

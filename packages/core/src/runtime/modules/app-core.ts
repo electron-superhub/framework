@@ -36,7 +36,6 @@ class AppCoreInitializer extends AppModuleBase implements AppModule {
     this.registerToIpcMainEvents();
     this.extendsRuntimeContext();
 
-    this.dispatchAppOpenEvents();
     this.listenAppQuitEvents();
   }
 
@@ -85,19 +84,6 @@ class AppCoreInitializer extends AppModuleBase implements AppModule {
         );
       }
     );
-  }
-
-  private dispatchAppOpenEvents() {
-    // 适用于 windows/linux平台 第二实例启动
-    this.contextApp.on("second-instance", (event, argv, workingDirectory) => {
-      this.contextIpcMain.emit(ipcMainEvents_core.app_open, null, argv);
-    });
-
-    // 适用于 mac平台 首次启动/第二实例启动
-    // open-url 事件必须在 app.ready 之前监听，否则会丢失 首次启动Url参数
-    this.contextApp.on("open-url", (event, url) => {
-      this.contextIpcMain.emit(ipcMainEvents_core.app_open, null, [url]);
-    });
   }
 
   private listenAppQuitEvents() {
