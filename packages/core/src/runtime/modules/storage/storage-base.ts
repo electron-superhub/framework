@@ -1,6 +1,6 @@
 import path from "node:path";
 
-import { AppContext } from "../../types";
+import { AppContext } from "../../../types";
 import { AppModuleBase } from "../../core";
 import { LowStorage, LowKVStorage } from "../../storage";
 

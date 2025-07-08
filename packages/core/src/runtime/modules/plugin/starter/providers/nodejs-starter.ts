@@ -7,7 +7,7 @@ import {
   AppPluginInfoBase,
   AppPluginType,
   AppPluginTypes,
-} from "../../../../types";
+} from "../../../../../types";
 import { AppPluginStarter, AppPluginStarterBase } from "./plugin-starter";
 
 export class AppNodejsPluginStarter

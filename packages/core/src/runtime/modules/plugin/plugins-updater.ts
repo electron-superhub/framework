@@ -12,7 +12,7 @@ import {
   AppPluginInfoBase,
   AppPluginProgressInfo,
   AppPluginPublishInfo,
-} from "../../types";
+} from "../../../types";
 import {
   AppPluginsBase,
   ipcMainEvents,

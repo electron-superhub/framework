@@ -1,4 +1,4 @@
-import { AppContext, AppModule } from "../../types";
+import { AppContext, AppModule } from "../../../types";
 import { LowStorage } from "../../storage";
 import { AppStorageBase } from "./storage-base";
 

@@ -1,6 +1,6 @@
 import path from "node:path";
 
-import { AppContext, AppModule } from "../types";
+import { AppContext, AppModule } from "../../types";
 import { AppModuleBase, ipcMainEvents } from "../core";
 
 const ipcMainRendererEvents_protocol = {

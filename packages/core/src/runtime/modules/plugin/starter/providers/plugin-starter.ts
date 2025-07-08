@@ -7,7 +7,7 @@ import {
   AppPluginInfo,
   AppPluginInfoBase,
   AppPluginType,
-} from "../../../../types";
+} from "../../../../../types";
 import { AppPluginsBase } from "../../../../core";
 
 export interface AppPluginStarter {

@@ -1,4 +1,4 @@
-import { AppContext, AppModule } from "../types";
+import { AppContext, AppModule } from "../../types";
 import {
   AppModuleBase,
   DefaultAppRuntimeContext,

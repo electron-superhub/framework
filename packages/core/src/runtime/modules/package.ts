@@ -1,7 +1,7 @@
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
-import { AppContext, AppModule, AppPackageInfo } from "../types";
+import { AppContext, AppModule, AppPackageInfo } from "../../types";
 import {
   AppModuleBase,
   DefaultAppRuntimeContext,

@@ -1,6 +1,6 @@
 import path from "node:path";
 
-import { AppContext, AppModule } from "../types";
+import { AppContext, AppModule } from "../../types";
 import { AppModuleBase } from "../core";
 
 class AppSingleInstance extends AppModuleBase implements AppModule {

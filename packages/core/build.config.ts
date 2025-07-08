@@ -1,7 +1,13 @@
 import { defineBuildConfig } from "unbuild";
 
 export default defineBuildConfig({
-  rollup: {
-    inlineDependencies: true,
-  },
+  declaration: true,
+  entries: [
+    "src/index",
+    {
+      builder: "mkdist",
+      input: "src/runtime/",
+      outDir: "dist/runtime/",
+    },
+  ],
 });

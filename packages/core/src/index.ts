@@ -1,1 +1,1 @@
-export * from "./runtime/types";
+export * from "./types";

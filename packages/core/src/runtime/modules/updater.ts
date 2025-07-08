@@ -1,6 +1,6 @@
 import { autoUpdater } from "electron-updater";
 
-import { AppContext, AppModule } from "../types";
+import { AppContext, AppModule } from "../../types";
 import { AppModuleBase, ipcMainEvents, registerIpcMainEvent } from "../core";
 
 const ipcMainEvents_updater = {

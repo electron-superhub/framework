@@ -1,7 +1,7 @@
 import path from "node:path";
 import { v4 as uuidv4 } from "uuid";
 
-import { AppContext, AppModule } from "../types";
+import { AppContext, AppModule } from "../../types";
 import { AppModuleBase, ipcMainEvents } from "../core";
 import { copyFileReportProgress } from "../utils";
 

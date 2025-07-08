@@ -1,4 +1,4 @@
-import { AppContext } from "../types";
+import { AppContext } from "../../types";
 import { DefaultAppRuntimeContext } from "./context";
 
 export abstract class AppModuleBase {

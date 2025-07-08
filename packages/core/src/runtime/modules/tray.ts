@@ -1,7 +1,7 @@
 import { Menu, Tray } from "electron";
 import path from "node:path";
 
-import { AppContext, AppModule } from "../types";
+import { AppContext, AppModule } from "../../types";
 import {
   AppModuleBase,
   DefaultAppRuntimeContext,

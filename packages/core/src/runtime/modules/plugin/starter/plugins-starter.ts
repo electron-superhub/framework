@@ -4,7 +4,7 @@ import {
   AppPluginInfo,
   AppPluginInfoBase,
   AppPluginTypes,
-} from "../../../types";
+} from "../../../../types";
 import {
   AppPluginsBase,
   ipcMainEvents,

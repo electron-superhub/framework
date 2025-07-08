@@ -1,9 +1,9 @@
 import { app, ipcMain } from "electron";
 
-import { AppContext, AppModule } from "../types";
+import { AppContext, AppModule } from "../../types";
 import { DefaultAppRuntimeContext } from "./context";
 
-class AppStarter implements PromiseLike<void> {
+export class AppStarter implements PromiseLike<void> {
   private readonly appContext: AppContext;
   private startPromise: Promise<void>;
 

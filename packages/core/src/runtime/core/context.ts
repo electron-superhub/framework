@@ -1,4 +1,4 @@
-import { AppRuntimeContext } from "../types";
+import { AppRuntimeContext } from "../../types";
 import { isPlainObject } from "../utils";
 
 export class DefaultAppRuntimeContext implements AppRuntimeContext {

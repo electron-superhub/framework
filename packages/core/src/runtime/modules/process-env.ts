@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import path from "node:path";
 
-import { AppContext, AppModule } from "../types";
+import { AppContext, AppModule } from "../../types";
 import { AppModuleBase, DefaultAppRuntimeContext } from "../core";
 
 declare module "../core" {

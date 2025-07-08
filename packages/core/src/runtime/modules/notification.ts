@@ -1,6 +1,6 @@
 import { Notification } from "electron";
 
-import { AppContext, AppModule } from "../types";
+import { AppContext, AppModule } from "../../types";
 import { AppModuleBase, registerIpcMainEvent } from "../core";
 
 const ipcMainEvents_notification = {

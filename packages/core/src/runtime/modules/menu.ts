@@ -1,6 +1,6 @@
 import { Menu } from "electron";
 
-import { AppContext, AppModule } from "../types";
+import { AppContext, AppModule } from "../../types";
 import { AppModuleBase } from "../core";
 
 class AppMenuManager extends AppModuleBase implements AppModule {

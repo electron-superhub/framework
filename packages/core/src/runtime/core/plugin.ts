@@ -1,7 +1,7 @@
 import path from "node:path";
 import fs from "node:fs";
 
-import { AppContext, AppPluginInfo, AppPluginInfoBase } from "../types";
+import { AppContext, AppPluginInfo, AppPluginInfoBase } from "../../types";
 import { AppModuleBase } from "./module";
 
 const runtimeKeys = {

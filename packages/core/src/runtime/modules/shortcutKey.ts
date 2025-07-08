@@ -1,6 +1,6 @@
 import { globalShortcut, BrowserWindow } from "electron";
 
-import { AppContext, AppModule } from "../types";
+import { AppContext, AppModule } from "../../types";
 import { AppModuleBase } from "../core";
 
 class AppShortcutKeyManager extends AppModuleBase implements AppModule {

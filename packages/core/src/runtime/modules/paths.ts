@@ -1,6 +1,6 @@
 import envPaths from "env-paths";
 
-import { AppContext, AppModule } from "../types";
+import { AppContext, AppModule } from "../../types";
 import { AppModuleBase, DefaultAppRuntimeContext } from "../core";
 
 declare module "../core" {
