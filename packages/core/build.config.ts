@@ -9,5 +9,11 @@ export default defineBuildConfig({
       input: "src/runtime/",
       outDir: "dist/runtime/",
     },
+    {
+      builder: "mkdist",
+      input: "src/preset/",
+      outDir: "dist/preset/",
+      declaration: false,
+    },
   ],
 });
