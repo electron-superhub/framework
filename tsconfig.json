@@ -17,5 +17,43 @@
     "strict": true, /* Enable all strict type-checking options. */
     /* Completeness */
     "skipLibCheck": true, /* Skip type checking all .d.ts files. */
+    "paths": {
+      "@esho/core/builder": [
+        "./packages/core/src/builder"
+      ],
+      "@esho/core/builder/*": [
+        "./packages/core/src/builder/*"
+      ],
+      "@esho/core/config": [
+        "./packages/core/src/config"
+      ],
+      "@esho/core/config/*": [
+        "./packages/core/src/config/*"
+      ],
+      "@esho/core/preset": [
+        "./packages/core/src/preset"
+      ],
+      "@esho/core/preset/*": [
+        "./packages/core/src/preset/*"
+      ],
+      "@esho/core/rollup": [
+        "./packages/core/src/rollup"
+      ],
+      "@esho/core/rollup/*": [
+        "./packages/core/src/rollup/*"
+      ],
+      "@esho/core/runtime": [
+        "./packages/core/src/runtime"
+      ],
+      "@esho/core/runtime/*": [
+        "./packages/core/src/runtime/*"
+      ],
+      "@esho/core/types": [
+        "./packages/core/src/types"
+      ],
+      "@esho/core/types/*": [
+        "./packages/core/src/types/*"
+      ],
+    }
   }
 }

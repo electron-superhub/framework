@@ -1,6 +1,6 @@
 {
-  "name": "@electron-superhub/core",
-  "version": "0.0.1",
+  "name": "@esho/core",
+  "version": "0.0.2",
   "description": "electron-superhub core",
   "author": {
     "name": "wanlitao",
@@ -20,13 +20,36 @@
   ],
   "type": "module",
   "exports": {
-    ".": "./dist/index.mjs",
+    ".": {
+      "types": "./dist/builder/index.d.ts",
+      "import": "./dist/builder/index.mjs"
+    },
+    "./builder": {
+      "types": "./dist/builder/index.d.ts",
+      "import": "./dist/builder/index.mjs"
+    },
+    "./config": {
+      "types": "./dist/config/index.d.ts",
+      "import": "./dist/config/index.mjs"
+    },
+    "./preset": {
+      "types": "./dist/preset/index.d.ts",
+      "import": "./dist/preset/index.mjs"
+    },
+    "./rollup": {
+      "types": "./dist/rollup/index.d.ts",
+      "import": "./dist/rollup/index.mjs"
+    },
     "./runtime": {
       "types": "./dist/runtime/index.d.ts",
       "import": "./dist/runtime/index.mjs"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/types/index.mjs"
     }
   },
-  "types": "./dist/index.d.ts",
+  "types": "./dist/types/index.d.ts",
   "files": [
     "dist"
   ],
@@ -40,20 +63,27 @@
   },
   "devDependencies": {
     "@types/semver": "^7.7.0",
-    "await-to-js": "^3.0.0",
     "typescript": "^5.8.3",
     "unbuild": "^3.5.0"
   },
   "dependencies": {
     "@electron/asar": "^4.0.0",
+    "await-to-js": "^3.0.0",
+    "c12": "^3.1.0",
+    "consola": "^3.4.2",
     "dotenv": "^16.5.0",
     "electron": "^36.6.0",
     "electron-updater": "^6.6.2",
     "env-paths": "^3.0.0",
+    "esbuild": "^0.25.8",
     "got": "^14.4.7",
+    "hookable": "^5.5.3",
     "lowdb": "^7.0.1",
     "nanoid": "^5.1.5",
+    "pathe": "^2.0.3",
+    "rollup": "^4.45.1",
     "sift": "^17.1.3",
+    "std-env": "^3.9.0",
     "uuid": "^11.1.0"
   }
 }

@@ -1,6 +1,6 @@
 {
-  "name": "@electron-superhub/cli",
-  "version": "0.0.1",
+  "name": "@esho/cli",
+  "version": "0.0.2",
   "description": "electron-superhub cli tools",
   "author": {
     "name": "wanlitao",
@@ -41,7 +41,6 @@
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "@electron-superhub/core": "workspace:^",
     "@types/node": "^22.15.33",
     "citty": "^0.1.6",
     "consola": "^3.4.2",
@@ -50,6 +49,7 @@
     "unbuild": "^3.5.0"
   },
   "dependencies": {
-    "@electron/asar": "^4.0.0"
+    "@electron/asar": "^4.0.0",
+    "@esho/core": "workspace:^"
   }
 }

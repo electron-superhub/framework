@@ -1,6 +1,6 @@
 import { defineCommand } from "citty";
 import { resolve, join } from "pathe";
-import { AppPluginInfoBase } from "@electron-superhub/core";
+import { AppPluginInfoBase } from "@esho/core/types";
 import { createPackage } from "@electron/asar";
 
 import fs from "node:fs";
@@ -47,9 +47,9 @@ export default defineCommand({
     },
   },
   async run(ctx) {
-    const cwd = resolve(ctx.args.cwd);
-    const packDir = resolve(cwd, ctx.args.packDir);
-    const outputDir = resolve(cwd, ctx.args.outputDir);
+    const cwd = resolve(ctx.args.cwd || ".");
+    const packDir = resolve(cwd, ctx.args.packDir || "dist");
+    const outputDir = resolve(cwd, ctx.args.outputDir || "release");
 
     if (!fs.existsSync(packDir)) {
       logger.error(`to pack directory "${packDir}" not exists`);
@@ -98,8 +98,8 @@ export default defineCommand({
       process.exit(1);
     }
 
-    logger.info(
-      `pack plugin success, output asar archive: ${outputAsarArchivePath}`
+    logger.success(
+      `plugin packed, output asar archive: ${outputAsarArchivePath}`
     );
 
     const releaseInfoFileName =
@@ -133,7 +133,7 @@ export default defineCommand({
       process.exit(1);
     }
 
-    logger.info(`output plugin release info: ${releaseInfoFilePath}`);
+    logger.success(`output plugin release info: ${releaseInfoFilePath}`);
   },
 });
 
