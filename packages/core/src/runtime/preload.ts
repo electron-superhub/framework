@@ -1,6 +1,9 @@
 import { contextBridge, ipcRenderer } from "electron";
 
-import { ipcMainEvents } from "./core";
+import { ipcMainEvents } from "./core/event";
+import { registerRendererIpcMainEvents } from "./renderer/event";
+
+registerRendererIpcMainEvents();
 
 const invokeGetAppRendererEvents = () => {
   return ipcRenderer.invoke(ipcMainEvents.app_getRendererEvents);

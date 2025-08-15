@@ -1,3 +1,3 @@
-import { exposeRendererApiMethodsToMainWorld } from "@esho/core/runtime";
+import { exposeRendererApiMethodsToMainWorld } from "@esho/core/runtime/preload";
 
 exposeRendererApiMethodsToMainWorld();

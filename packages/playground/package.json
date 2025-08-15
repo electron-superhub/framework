@@ -1,0 +1,16 @@
+{
+  "name": "@esho/playground",
+  "description": "electron-superhub playground",
+  "private": true,
+  "scripts": {
+    "build": "eshi build"
+  },
+  "devDependencies": {
+    "@esho/cli": "workspace:^",
+    "@esho/core": "workspace:^"
+  },
+  "dependencies": {
+    "electron": "^36.6.0",
+    "electron-updater": "^6.6.2"
+  }
+}

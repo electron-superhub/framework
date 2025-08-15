@@ -2,14 +2,9 @@ import { AppContext, AppModule } from "../../types";
 import {
   AppModuleBase,
   DefaultAppRuntimeContext,
-  registerIpcMainEvent,
+  ipcMainEvents,
 } from "../core";
-
-const ipcMainEvents_ipcRenderer = {
-  app_getRendererEvents: "app:get-renderer-events",
-} as const;
-
-type IpcMainEvents_ipcRenderer = typeof ipcMainEvents_ipcRenderer;
+import { registerRendererIpcMainEvents } from "../renderer/event";
 
 declare module "../core" {
   interface DefaultAppRuntimeContext {
@@ -20,8 +15,6 @@ declare module "../core" {
     registerIpcRendererSendEvents(sendEvents: Record<string, string>): void;
     registerIpcRendererInvokeEvents(invokeEvents: Record<string, string>): void;
   }
-
-  interface IpcMainEvents extends IpcMainEvents_ipcRenderer {}
 }
 
 const runtimeKeys = {
@@ -32,18 +25,10 @@ class AppIpcRendererManager extends AppModuleBase implements AppModule {
   init(context: AppContext): Promise<void> | void {
     super.load(context);
 
-    this.registerToIpcMainEvents();
+    registerRendererIpcMainEvents();
     this.extendsRuntimeContext();
 
     this.handleAppIpcRendererManageEvents();
-  }
-
-  private registerToIpcMainEvents() {
-    Object.entries(ipcMainEvents_ipcRenderer).forEach(
-      ([eventKey, eventName]) => {
-        registerIpcMainEvent(eventKey, eventName);
-      }
-    );
   }
 
   private extendsRuntimeContext() {
@@ -115,16 +100,13 @@ class AppIpcRendererManager extends AppModuleBase implements AppModule {
   }
 
   private handleAppIpcRendererManageEvents() {
-    this.contextIpcMain.handle(
-      ipcMainEvents_ipcRenderer.app_getRendererEvents,
-      () => {
-        return {
-          onEvents: this.runtimeContext.getIpcRendererOnEvents(),
-          sendEvents: this.runtimeContext.getIpcRendererSendEvents(),
-          invokeEvents: this.runtimeContext.getIpcRendererInvokeEvents(),
-        };
-      }
-    );
+    this.contextIpcMain.handle(ipcMainEvents.app_getRendererEvents, () => {
+      return {
+        onEvents: this.runtimeContext.getIpcRendererOnEvents(),
+        sendEvents: this.runtimeContext.getIpcRendererSendEvents(),
+        invokeEvents: this.runtimeContext.getIpcRendererInvokeEvents(),
+      };
+    });
   }
 }
 

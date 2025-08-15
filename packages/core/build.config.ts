@@ -34,11 +34,13 @@ export default defineBuildConfig({
   ],
   externals: [
     "@esho/core",
+    "@esho/core/runtime/meta",
     ...subpaths.map((subpath) => `@esho/core/${subpath}`),
   ],
   stubOptions: {
     jiti: {
       alias: {
+        "@esho/core/runtime/meta": resolve(srcDir, "../runtime-meta.mjs"),
         ...Object.fromEntries(
           subpaths.map((subpath) => [
             `@esho/core/${subpath}`,

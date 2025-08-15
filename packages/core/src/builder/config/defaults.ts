@@ -11,4 +11,7 @@ export const EshoDefaults: EshoConfig = {
   outputDir: "dist",
 
   hooks: {},
+
+  // Rollup
+  analyze: false,
 };

@@ -47,11 +47,16 @@
     "./types": {
       "types": "./dist/types/index.d.ts",
       "import": "./dist/types/index.mjs"
+    },
+    "./runtime/meta": {
+      "types": "./runtime-meta.d.ts",
+      "import": "./runtime-meta.mjs"
     }
   },
   "types": "./dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "runtime-meta.*"
   ],
   "scripts": {
     "build": "unbuild",
@@ -68,6 +73,11 @@
   },
   "dependencies": {
     "@electron/asar": "^4.0.0",
+    "@rollup/plugin-alias": "^5.1.1",
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@vercel/nft": "^0.30.0",
     "await-to-js": "^3.0.0",
     "c12": "^3.1.0",
     "consola": "^3.4.2",
@@ -76,12 +86,17 @@
     "electron-updater": "^6.6.2",
     "env-paths": "^3.0.0",
     "esbuild": "^0.25.8",
+    "exsolve": "^1.0.7",
     "got": "^14.4.7",
     "hookable": "^5.5.3",
     "lowdb": "^7.0.1",
+    "mlly": "^1.7.4",
     "nanoid": "^5.1.5",
     "pathe": "^2.0.3",
+    "pkg-types": "^2.2.0",
     "rollup": "^4.45.1",
+    "rollup-plugin-visualizer": "^6.0.3",
+    "semver": "^7.7.2",
     "sift": "^17.1.3",
     "std-env": "^3.9.0",
     "uuid": "^11.1.0"
