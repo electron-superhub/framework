@@ -7,18 +7,16 @@ export const runtimeDir = fileURLToPath(
 );
 
 export const runtimeInlineDependencies = [
-  "@electron/asar",
   "await-to-js",
   "dotenv",
   "env-paths",
-  "got",
   "lowdb",
   "nanoid",
   "sift",
   "uuid",
 ];
 
-export const runtimeExternalDependencies = ["semver"];
+export const runtimeExternalDependencies = ["@electron/asar", "got", "semver"];
 
 export const runtimeElectronExternalDependencies = [
   "electron",

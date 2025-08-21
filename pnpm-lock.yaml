@@ -144,9 +144,6 @@ importers:
 
   packages/playground:
     dependencies:
-      electron:
-        specifier: ^36.6.0
-        version: 36.6.0
       electron-updater:
         specifier: ^6.6.2
         version: 6.6.2
@@ -157,6 +154,9 @@ importers:
       '@esho/core':
         specifier: workspace:^
         version: link:../core
+      electron:
+        specifier: ^36.6.0
+        version: 36.6.0
 
 packages:
 

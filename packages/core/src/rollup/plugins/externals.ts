@@ -88,6 +88,7 @@ const tryResolve = (
   }
   const res = resolveModuleURL(id, {
     try: true,
+    conditions: ["node", "import", "default"],
     from: importer && isAbsolute(importer) ? [pathToFileURL(importer)] : [],
     suffixes: ["", "/index"],
     extensions: [".mjs", ".cjs", ".js", ".mts", ".cts", ".ts", ".json"],

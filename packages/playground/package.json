@@ -2,15 +2,18 @@
   "name": "@esho/playground",
   "description": "electron-superhub playground",
   "private": true,
+  "type": "module",
+  "main": "./dist/electron/main.mjs",
   "scripts": {
-    "build": "eshi build"
+    "esho:build": "eshi build",
+    "electron:start": "pnpm esho:build && electron ."
   },
   "devDependencies": {
     "@esho/cli": "workspace:^",
-    "@esho/core": "workspace:^"
+    "@esho/core": "workspace:^",
+    "electron": "^36.6.0"
   },
   "dependencies": {
-    "electron": "^36.6.0",
     "electron-updater": "^6.6.2"
   }
 }

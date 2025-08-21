@@ -55,6 +55,7 @@ export const getMainRollupConfig = async (
         const normalizedId = normalize(id);
         return getChunkFileName(normalizedId);
       },
+      importAttributesKey: "with",
     },
   };
 
@@ -92,6 +93,7 @@ export const getMainRollupConfig = async (
     nodeResolve({
       preferBuiltins: true,
       rootDir: esho.options.rootDir,
+      exportConditions: ["node", "import", "default"],
     })
   );
   rollupPlugins.push(
@@ -154,6 +156,7 @@ export const getPreloadRollupConfig = async (
     nodeResolve({
       preferBuiltins: true,
       rootDir: esho.options.rootDir,
+      exportConditions: ["node", "import", "default"],
     })
   );
   if (esho.options.analyze)
