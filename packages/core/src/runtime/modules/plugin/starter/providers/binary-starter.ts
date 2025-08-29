@@ -4,7 +4,7 @@ import {
   AppContext,
   AppPluginArgPassModes,
   AppPluginInfo,
-  AppPluginInfoBase,
+  AppPluginMetaInfo,
   AppPluginType,
   AppPluginTypes,
 } from "../../../../../types";
@@ -99,7 +99,7 @@ export class AppBinaryPluginStarter
   }
 
   private configurePluginProcessStdOutput(
-    pluginInfoBase: AppPluginInfoBase,
+    pluginInfoBase: AppPluginMetaInfo,
     pluginProcess: ChildProcess,
     stdMsgListener?: (stdMsg: string) => void
   ) {
@@ -124,7 +124,7 @@ export class AppBinaryPluginStarter
   // #endregion
 
   // #region stop plugin
-  async stopAppPlugin(pluginInfoBase: AppPluginInfoBase) {
+  async stopAppPlugin(pluginInfoBase: AppPluginMetaInfo) {
     const startedProcess = this.resolvePluginStartedProcess(pluginInfoBase);
     if (!startedProcess) return;
 

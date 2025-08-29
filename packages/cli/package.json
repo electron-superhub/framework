@@ -35,21 +35,29 @@
     "build": "unbuild",
     "prepack": "pnpm build",
     "publish:ztx": "nrm use ztx && pnpm login && pnpm publish",
-    "eshi": "node ./bin/eshi.mjs"
+    "eshi": "node ./bin/eshi.mjs",
+    "pacote": "pacote"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "devDependencies": {
+    "@rollup/plugin-virtual": "^3.0.2",
     "@types/node": "^22.15.33",
+    "@types/npmcli__config": "^6.0.3",
+    "@types/pacote": "^11.1.8",
     "citty": "^0.1.6",
     "consola": "^3.4.2",
     "pathe": "^2.0.3",
+    "pkg-types": "^2.2.0",
     "typescript": "^5.8.3",
     "unbuild": "^3.5.0"
   },
   "dependencies": {
     "@electron/asar": "^4.0.0",
-    "@esho/core": "workspace:^"
+    "@esho/core": "workspace:^",
+    "@npmcli/config": "^10.3.1",
+    "pacote": "^21.0.0",
+    "zod": "^4.0.17"
   }
 }

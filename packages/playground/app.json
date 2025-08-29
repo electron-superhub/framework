@@ -1,0 +1,31 @@
+{
+  "appId": "com.esho.playground",
+  "name": "esho-playground-app",
+  "productName": "esho框架-playground应用",
+  "description": "electron-superhub框架-playground测试应用",
+  "version": "1.0.0",
+  "author": {
+    "name": "zhaotx",
+    "email": "admin@zhaotx.cn",
+    "url": "https://zhaotx.cn/"
+  },
+  "homepage": "https://gitlab.zhaotx.cn/zctx3.0/client-tool/",
+  "copyright": "Copyright © 2025 esho",
+  "windows": {
+    "main": {
+      "prod_url": "http://192.168.1.86:28002/tools-system/",
+      "dev_url": "http://192.168.1.86:28002/tools-system/"
+    }
+  },
+  "protocol": {
+    "scheme": "esho-playground"
+  },
+  "publish": {
+    "base_url": "http://172.17.20.222:9000/internalfile/test/electron/ztx-bid-submission/release/v2.0/"
+  },
+  "plugins": {
+    "publish": {
+      "base_url": "http://172.17.20.222:9000/internalfile/test/electron/ztx-bid-submission/release/v2.0/plugins/"
+    }
+  }
+}

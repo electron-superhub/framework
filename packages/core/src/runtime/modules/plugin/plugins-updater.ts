@@ -9,7 +9,7 @@ import {
   AppContext,
   AppModule,
   AppPluginDownloadedInfo,
-  AppPluginInfoBase,
+  AppPluginMetaInfo,
   AppPluginProgressInfo,
   AppPluginPublishInfo,
 } from "../../../types";
@@ -310,7 +310,7 @@ class AppPluginsUpdater extends AppPluginsBase implements AppModule {
   }
 
   private resolvePluginReleaseDownloadDirPath(
-    pluginInfoBase: AppPluginInfoBase
+    pluginInfoBase: AppPluginMetaInfo
   ) {
     const pluginReleaseDownloadDirPath = path.join(
       this.pluginsPath,
@@ -385,7 +385,7 @@ class AppPluginsUpdater extends AppPluginsBase implements AppModule {
     }
   }
 
-  private checkWaitStopInstalledPlugin(pluginInfoBase: AppPluginInfoBase) {
+  private checkWaitStopInstalledPlugin(pluginInfoBase: AppPluginMetaInfo) {
     const installedPluginInfo = this.getInstalledPluginInfo(pluginInfoBase);
 
     if (!installedPluginInfo) return Promise.resolve();
@@ -415,7 +415,7 @@ class AppPluginsUpdater extends AppPluginsBase implements AppModule {
     });
   }
 
-  private async emptyPluginInstallDir(pluginInfoBase: AppPluginInfoBase) {
+  private async emptyPluginInstallDir(pluginInfoBase: AppPluginMetaInfo) {
     const pluginInstallDirPath =
       this.resolvePluginInstallDirPath(pluginInfoBase);
 
@@ -533,7 +533,7 @@ class AppPluginsUpdater extends AppPluginsBase implements AppModule {
   }
 
   private getPluginDownloadedInfo(
-    pluginInfoBase: AppPluginInfoBase
+    pluginInfoBase: AppPluginMetaInfo
   ): AppPluginDownloadedInfo {
     return this.runtimeContext.getRuntimeInfoSubValue(
       runtimeKeys.app_plugins_updater,
@@ -541,7 +541,7 @@ class AppPluginsUpdater extends AppPluginsBase implements AppModule {
     ) as AppPluginDownloadedInfo;
   }
 
-  private removePluginDownloadedInfo(pluginInfoBase: AppPluginInfoBase) {
+  private removePluginDownloadedInfo(pluginInfoBase: AppPluginMetaInfo) {
     this.runtimeContext.updateRuntimeInfoSubValue(
       runtimeKeys.app_plugins_updater,
       ["downloaded", pluginInfoBase.pluginId],

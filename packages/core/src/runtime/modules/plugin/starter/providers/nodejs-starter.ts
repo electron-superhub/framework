@@ -4,7 +4,7 @@ import {
   AppContext,
   AppPluginArgPassModes,
   AppPluginInfo,
-  AppPluginInfoBase,
+  AppPluginMetaInfo,
   AppPluginType,
   AppPluginTypes,
 } from "../../../../../types";
@@ -103,7 +103,7 @@ export class AppNodejsPluginStarter
   }
 
   private configurePluginProcessStdOutput(
-    pluginInfoBase: AppPluginInfoBase,
+    pluginInfoBase: AppPluginMetaInfo,
     pluginProcess: UtilityProcess,
     stdMsgListener?: (stdMsg: string) => void
   ) {
@@ -124,7 +124,7 @@ export class AppNodejsPluginStarter
   // #endregion
 
   // #region stop plugin
-  async stopAppPlugin(pluginInfoBase: AppPluginInfoBase): Promise<void> {
+  async stopAppPlugin(pluginInfoBase: AppPluginMetaInfo): Promise<void> {
     const startedProcess = this.resolvePluginStartedProcess(pluginInfoBase);
     if (!startedProcess) return;
 

@@ -1,7 +1,8 @@
 import { defineCommand } from "citty";
 import { resolve, join } from "pathe";
-import { AppPluginInfoBase } from "@esho/core/types";
 import { createPackage } from "@electron/asar";
+
+import { AppPluginMetaInfo } from "@esho/core/types";
 
 import fs from "node:fs";
 
@@ -63,7 +64,7 @@ export default defineCommand({
     }
 
     const pluginJsonStr = await fs.promises.readFile(pluginJsonPath, "utf-8");
-    const pluginInfo = JSON.parse(pluginJsonStr) as AppPluginInfoBase;
+    const pluginInfo = JSON.parse(pluginJsonStr) as AppPluginMetaInfo;
 
     if (pluginInfo.name && pluginInfo.version) {
       logger.info(
@@ -138,7 +139,7 @@ export default defineCommand({
 });
 
 function formatPluginAsarArchiveFileName(
-  pluginInfo: AppPluginInfoBase,
+  pluginInfo: AppPluginMetaInfo,
   targetPlatformArch: string
 ) {
   const nameVersion = `${pluginInfo.name}-v${pluginInfo.version}`;

@@ -11,7 +11,7 @@ export enum AppPluginArgPassModes {
 export type AppPluginType = keyof typeof AppPluginTypes;
 export type AppPluginArgPassMode = keyof typeof AppPluginArgPassModes;
 
-export interface AppPluginInfoBase {
+export interface AppPluginMetaInfo {
   pluginId: string;
   name: string;
   productName: string;
@@ -32,12 +32,12 @@ export interface AppPluginStartOptions {
   successStdout: string; //启动成功后的输出信息
 }
 
-export interface AppPluginInfo extends AppPluginInfoBase {
+export interface AppPluginInfo extends AppPluginMetaInfo {
   type: AppPluginType;
   startOptions: AppPluginStartOptions;
 }
 
-export interface AppPluginPublishInfo extends AppPluginInfoBase {
+export interface AppPluginPublishInfo extends AppPluginMetaInfo {
   url: string;
   sha512: string;
   size: number;

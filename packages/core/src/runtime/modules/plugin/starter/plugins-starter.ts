@@ -2,7 +2,7 @@ import {
   AppContext,
   AppModule,
   AppPluginInfo,
-  AppPluginInfoBase,
+  AppPluginMetaInfo,
   AppPluginTypes,
 } from "../../../../types";
 import {
@@ -164,14 +164,14 @@ class AppPluginsStarter extends AppPluginsBase implements AppModule {
   // #endregion
 
   // #region start/stop plugin
-  private doStartAppPlugin(pluginInfoBase: AppPluginInfoBase) {
+  private doStartAppPlugin(pluginInfoBase: AppPluginMetaInfo) {
     const pluginInfo = this.getInstalledPluginInfo(pluginInfoBase);
 
     this.doStartInstalledPlugin(pluginInfo);
   }
 
   private doStopAppPlugin(
-    pluginInfoBase: AppPluginInfoBase,
+    pluginInfoBase: AppPluginMetaInfo,
     resultNotify: any
   ) {
     const pluginInfo = this.getInstalledPluginInfo(pluginInfoBase);

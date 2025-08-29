@@ -1,7 +1,7 @@
 import path from "node:path";
 import fs from "node:fs";
 
-import { AppContext, AppPluginInfo, AppPluginInfoBase } from "../../types";
+import { AppContext, AppPluginInfo, AppPluginMetaInfo } from "../../types";
 import { AppModuleBase } from "./module";
 
 const runtimeKeys = {
@@ -35,7 +35,7 @@ export abstract class AppPluginsBase extends AppModuleBase {
     return appPluginsPath;
   }
 
-  protected resolvePluginInstallDirPath(pluginInfoBase: AppPluginInfoBase) {
+  protected resolvePluginInstallDirPath(pluginInfoBase: AppPluginMetaInfo) {
     const pluginInstallDirPath = path.join(
       this.pluginsPath,
       pluginInfoBase.pluginId
@@ -96,7 +96,7 @@ export abstract class AppPluginsBase extends AppModuleBase {
     return Object.values(installedPluginInfoMap);
   }
 
-  protected getInstalledPluginInfo(pluginInfoBase: AppPluginInfoBase) {
+  protected getInstalledPluginInfo(pluginInfoBase: AppPluginMetaInfo) {
     return this.runtimeContext.getRuntimeInfoSubValue(runtimeKeys.app_plugins, [
       "installed",
       pluginInfoBase.pluginId,
@@ -105,7 +105,7 @@ export abstract class AppPluginsBase extends AppModuleBase {
 
   // 读取 对应插件的plugin.json 并更新 runtimeInfo的 已安装插件信息
   protected async setInstalledPluginInfoFromFile(
-    pluginInfoBase: AppPluginInfoBase
+    pluginInfoBase: AppPluginMetaInfo
   ) {
     const installedPluginInfo = await this.readInstalledPluginInfoFromFile(
       pluginInfoBase
@@ -122,7 +122,7 @@ export abstract class AppPluginsBase extends AppModuleBase {
 
   // 从对应插件的 plugin.json 中读取插件信息
   private async readInstalledPluginInfoFromFile(
-    pluginInfoBase: AppPluginInfoBase
+    pluginInfoBase: AppPluginMetaInfo
   ) {
     const pluginInstallDirPath =
       this.resolvePluginInstallDirPath(pluginInfoBase);

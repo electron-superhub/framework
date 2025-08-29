@@ -5,7 +5,7 @@ import {
   AppContext,
   AppPluginArgPassModes,
   AppPluginInfo,
-  AppPluginInfoBase,
+  AppPluginMetaInfo,
   AppPluginType,
 } from "../../../../../types";
 import { AppPluginsBase } from "../../../../core";
@@ -18,7 +18,7 @@ export interface AppPluginStarter {
     stdMsgListener?: (stdMsg: string) => void
   ): Promise<number>;
 
-  stopAppPlugin(pluginInfoBase: AppPluginInfoBase): Promise<void>;
+  stopAppPlugin(pluginInfoBase: AppPluginMetaInfo): Promise<void>;
 }
 
 export abstract class AppPluginStarterBase extends AppPluginsBase {
@@ -104,7 +104,7 @@ export abstract class AppPluginStarterBase extends AppPluginsBase {
 
   // #region starter runtime infos
   protected savePluginStartedProcess(
-    pluginInfoBase: AppPluginInfoBase,
+    pluginInfoBase: AppPluginMetaInfo,
     pluginProcess: any,
     pluginListenPort: number
   ) {
@@ -120,7 +120,7 @@ export abstract class AppPluginStarterBase extends AppPluginsBase {
     );
   }
 
-  protected resolvePluginStartedProcess(pluginInfoBase: AppPluginInfoBase) {
+  protected resolvePluginStartedProcess(pluginInfoBase: AppPluginMetaInfo) {
     const startedProcess = this.runtimeContext.getRuntimeInfoSubValue(
       this.pluginsRuntimeKey,
       ["processes", pluginInfoBase.pluginId]
@@ -129,7 +129,7 @@ export abstract class AppPluginStarterBase extends AppPluginsBase {
     return startedProcess?.process;
   }
 
-  protected removePluginStartedProcess(pluginInfoBase: AppPluginInfoBase) {
+  protected removePluginStartedProcess(pluginInfoBase: AppPluginMetaInfo) {
     this.runtimeContext.updateRuntimeInfoSubValue(
       this.pluginsRuntimeKey,
       ["processes"],
