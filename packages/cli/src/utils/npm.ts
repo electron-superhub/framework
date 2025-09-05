@@ -1,9 +1,5 @@
 import Config from "@npmcli/config";
-import {
-  definitions,
-  shorthands,
-  flatten,
-} from "@npmcli/config/lib/definitions";
+import ConfigDefinitions from "@npmcli/config/lib/definitions";
 import { join, dirname } from "pathe";
 
 import { exec } from "node:child_process";
@@ -14,6 +10,8 @@ import { logger } from "./logger";
 
 const execPromise = promisify(exec);
 const requireFrom = createRequire(import.meta.url);
+
+const { definitions, shorthands, flatten } = ConfigDefinitions;
 
 export async function loadNpmConfig(opts?: {
   cwd?: string;

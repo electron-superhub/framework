@@ -35,8 +35,7 @@
     "build": "unbuild",
     "prepack": "pnpm build",
     "publish:ztx": "nrm use ztx && pnpm login && pnpm publish",
-    "eshi": "node ./bin/eshi.mjs",
-    "pacote": "pacote"
+    "eshi": "node ./bin/eshi.mjs"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -48,6 +47,7 @@
     "@types/pacote": "^11.1.8",
     "citty": "^0.1.6",
     "consola": "^3.4.2",
+    "eta": "^3.5.0",
     "pathe": "^2.0.3",
     "pkg-types": "^2.2.0",
     "typescript": "^5.8.3",

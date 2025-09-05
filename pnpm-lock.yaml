@@ -53,6 +53,9 @@ importers:
       consola:
         specifier: ^3.4.2
         version: 3.4.2
+      eta:
+        specifier: ^3.5.0
+        version: 3.5.0
       pathe:
         specifier: ^2.0.3
         version: 2.0.3
@@ -1072,6 +1075,10 @@ packages:
 
   estree-walker@2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
+
+  eta@3.5.0:
+    resolution: {integrity: sha512-e3x3FBvGzeCIHhF+zhK8FZA2vC5uFn6b4HJjegUbIWrDb4mJ7JjTGMJY9VGIbRVpmSwHopNiaJibhjIr+HfLug==}
+    engines: {node: '>=6.0.0'}
 
   exponential-backoff@3.1.2:
     resolution: {integrity: sha512-8QxYTVXUkuy7fIIoitQkPwGonB8F3Zj8eEO8Sqg9Zv/bkI7RJAzowee4gr81Hak/dUTpA2Z7VfQgoijjPNlUZA==}
@@ -3107,6 +3114,8 @@ snapshots:
     optional: true
 
   estree-walker@2.0.2: {}
+
+  eta@3.5.0: {}
 
   exponential-backoff@3.1.2: {}
 

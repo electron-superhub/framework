@@ -12,7 +12,6 @@ const packageDependencies = ["electron-updater"];
 const packageScripts = {
   "esho:build": "eshi build",
   "electron:start": "pnpm esho:build && electron .",
-  "electron:build": "pnpm esho:build && electron-builder",
 };
 
 export async function buildAppPackageJson(
@@ -43,6 +42,16 @@ export async function buildAppPackageJson(
   );
 
   packageJson.scripts = packageScripts;
+  if (process.platform === "win32") {
+    packageJson.scripts["electron:build"] =
+      "pnpm esho:build && electron-builder --win";
+  }
+  if (process.platform === "linux") {
+    packageJson.scripts["electron:build"] =
+      "pnpm esho:build && electron-builder --linux";
+    packageJson.scripts["electron:build:arm64"] =
+      "pnpm esho:build && electron-builder --linux --arm64";
+  }
 
   return packageJson;
 }
@@ -65,7 +74,7 @@ async function buildAppPackageDependencyRecord(dependencyPkgNames: string[]) {
           version: `^${depPkgManifest.version}`,
         }))
         .catch((err) => {
-          logger.error(
+          logger.warn(
             `resolve package "${depPkgName}" manifest failed: ${err}`
           );
           return {
