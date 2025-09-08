@@ -164,6 +164,6 @@ export default defineCommand({
       process.exit(1);
     }
 
-    logger.info(`electron-superhub app initialized`);
+    logger.success(`electron-superhub app initialized`);
   },
 });

@@ -5,3 +5,5 @@ export * from "./hooks";
 export * from "./esho";
 export * from "./preset";
 export * from "./rollup";
+
+export * from "./global";

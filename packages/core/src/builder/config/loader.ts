@@ -19,6 +19,9 @@ export async function loadOptions(configOverrides: EshoConfig = {}) {
 }
 
 async function loadUserConfig(configOverrides: EshoConfig = {}) {
+  // @ts-ignore
+  globalThis.defineEshoConfig = globalThis.defineEshoConfig || ((c) => c);
+
   const loadedConfig = await loadConfig<EshoConfig>({
     name: "esho",
     cwd: configOverrides.rootDir,

@@ -20,6 +20,6 @@ export default defineCommand({
     await build(esho);
     await esho.close();
 
-    logger.info(`electron-superhub app development started`);
+    logger.success(`electron-superhub app development started`);
   },
 });

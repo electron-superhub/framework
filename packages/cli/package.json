@@ -1,6 +1,6 @@
 {
   "name": "@esho/cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "electron-superhub cli tools",
   "author": {
     "name": "wanlitao",
