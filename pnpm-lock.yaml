@@ -175,9 +175,6 @@ importers:
       '@esho/cli':
         specifier: workspace:^
         version: link:../cli
-      '@esho/core':
-        specifier: workspace:^
-        version: link:../core
       electron:
         specifier: ^36.6.0
         version: 36.6.0

@@ -10,7 +10,6 @@
   },
   "devDependencies": {
     "@esho/cli": "workspace:^",
-    "@esho/core": "workspace:^",
     "electron": "^36.6.0"
   },
   "dependencies": {
