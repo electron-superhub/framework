@@ -17,6 +17,7 @@ import {
   manageShortcutKeys,
   manageWindows,
   resolveAppPackage,
+  resolveAppInfo,
   resolveAppPaths,
   resolveProcessEnvironment,
 } from "./modules";
@@ -26,6 +27,7 @@ export const resolveDefaultAppStarter = () => {
     .attach(resolveProcessEnvironment())
     .attach(manageIpcRenderer())
     .attach(resolveAppPackage())
+    .attach(resolveAppInfo())
     .attach(resolveAppPaths())
     .attach(checkSingleInstance())
     .attach(initAppCore())

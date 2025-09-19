@@ -38,8 +38,8 @@ class AppProtocolHandler extends AppModuleBase implements AppModule {
   }
 
   private resolveProtocolScheme(): string {
-    const appConfigs = this.runtimeContext.getAppPackageConfigs();
-    return appConfigs.protocol_scheme ?? "";
+    const protocolOptions = this.runtimeContext.getAppProtocolOptions();
+    return protocolOptions.scheme ?? "";
   }
 
   private checkDevSetProtocolClient() {

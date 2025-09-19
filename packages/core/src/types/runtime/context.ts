@@ -9,7 +9,6 @@ export interface AppPackageInfo {
   productName: string;
   description: string;
   version: string;
-  appConfigs: Record<string, any>;
 }
 
 export interface AppRuntimeContext {

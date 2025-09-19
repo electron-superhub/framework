@@ -13,7 +13,7 @@ export function buildElectronBuilderConfig(appInfo: AppInfo) {
     files: [
       {
         from: ".",
-        filter: ["dist", "resources", "package.json"],
+        filter: ["dist", "resources", "package.json", "app.json"],
       },
     ],
     protocols: {

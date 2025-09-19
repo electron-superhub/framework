@@ -1,6 +1,7 @@
 export * from "./process-env";
 export * from "./ipc-renderer";
 export * from "./package";
+export * from "./app-info";
 export * from "./paths";
 export * from "./single-instance";
 export * from "./app-core";

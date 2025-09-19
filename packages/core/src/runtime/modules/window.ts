@@ -245,10 +245,10 @@ class AppWindowManager extends AppModuleBase implements AppModule {
   }
 
   private resolveMainUrl(): string {
-    const appConfigs = this.runtimeContext.getAppPackageConfigs();
+    const mainWindowOptions = this.runtimeContext.getAppMainWindowOptions();
 
-    const mainUrl_Prod = appConfigs.window_main_url ?? "";
-    const mainUrl_Dev = appConfigs.window_main_url_dev ?? mainUrl_Prod;
+    const mainUrl_Prod = mainWindowOptions.prod_url ?? "";
+    const mainUrl_Dev = mainWindowOptions.dev_url ?? mainUrl_Prod;
 
     return this.runtimeContext.isDevelopment() ? mainUrl_Dev : mainUrl_Prod;
   }

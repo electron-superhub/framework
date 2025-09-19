@@ -450,7 +450,7 @@ class AppPluginsUpdater extends AppPluginsBase implements AppModule {
   // #region read configs
   private resolvePluginsPublishBaseUrl(): string {
     return (
-      this.runtimeContext.getAppPackageConfigs().plugins_publish_base_url ?? ""
+      this.runtimeContext.getAppPluginsPublishOptions().base_url ?? ""
     );
   }
   // #endregion

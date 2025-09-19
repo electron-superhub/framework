@@ -17,7 +17,6 @@ type IpcMainEvents_package = typeof ipcMainEvents_package;
 declare module "../core" {
   interface DefaultAppRuntimeContext {
     getAppPackageInfo(): AppPackageInfo;
-    getAppPackageConfigs(): Record<string, any>;
   }
 
   interface IpcMainEvents extends IpcMainEvents_package {}
@@ -72,7 +71,6 @@ class AppPackageResolver extends AppModuleBase implements AppModule {
       productName: packageJson.productName ?? packageJson.name,
       description: packageJson.description,
       version: packageJson.version,
-      appConfigs: packageJson.appConfigs ?? {},
     };
 
     this.runtimeContext.setRuntimeInfo(runtimeKeys.app_package, packageInfo);
@@ -83,15 +81,6 @@ class AppPackageResolver extends AppModuleBase implements AppModule {
       "getAppPackageInfo",
       function (): AppPackageInfo {
         return this.getRuntimeInfo(runtimeKeys.app_package) as AppPackageInfo;
-      }
-    );
-
-    DefaultAppRuntimeContext.addExtensionMethod(
-      "getAppPackageConfigs",
-      function (): Record<string, any> {
-        return this.getRuntimeInfoSubValue(runtimeKeys.app_package, [
-          "appConfigs",
-        ]);
       }
     );
   }
