@@ -5,9 +5,8 @@ import { registerRendererIpcMainEvents } from "./renderer/event";
 
 registerRendererIpcMainEvents();
 
-const invokeGetAppRendererEvents = () => {
-  return ipcRenderer.invoke(ipcMainEvents.app_getRendererEvents);
-};
+const invokeGetAppRendererEvents = () =>
+  ipcRenderer.invoke(ipcMainEvents.app_getRendererEvents);
 
 export const exposeRendererApiMethodsToMainWorld = async (
   exposeApiKey: string = "electronIpc"
@@ -55,6 +54,24 @@ export const exposeRendererApiMethodsToMainWorld = async (
       ) => ipcRenderer.invoke(rendererInvokeEventName, ...args);
     }
   );
+
+  exposeRendererApiMethods["accept"] = (
+    channel: string,
+    listener: (...args: any[]) => void
+  ) =>
+    ipcRenderer.on(channel, (event, ...eventArgs: any[]) => {
+      listener(...eventArgs);
+    });
+
+  exposeRendererApiMethods["send"] = (channel: string, ...args: any[]) =>
+    ipcRenderer.send(ipcMainEvents.app_moduleFederation_send, channel, ...args);
+
+  exposeRendererApiMethods["invoke"] = (channel: string, ...args: any[]) =>
+    ipcRenderer.invoke(
+      ipcMainEvents.app_moduleFederation_invoke,
+      channel,
+      ...args
+    );
 
   contextBridge.exposeInMainWorld(exposeApiKey, exposeRendererApiMethods);
 };
