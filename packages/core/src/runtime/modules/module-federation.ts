@@ -16,10 +16,15 @@ type IpcMainListener = (event: Electron.IpcMainEvent, ...args: any[]) => void;
 
 declare module "../core" {
   interface DefaultAppRuntimeContext {
-    registerIpcMainHandler(channel: string, handler: IpcMainHandler): void;
+    registerIpcMainHandler(
+      channel: string,
+      handler: IpcMainHandler,
+      moduleName?: string
+    ): void;
     unregisterIpcMainHandler(channel: string): void;
     hasIpcMainHandler(channel: string): boolean;
     getIpcMainHandler(channel: string): IpcMainHandler | undefined;
+    getIpcMainHandleModule(channel: string): string | undefined;
     listIpcMainHandleChannels(): string[];
     registerIpcMainListener(
       channel: string,
@@ -55,9 +60,15 @@ class AppModuleFederation extends AppModuleBase implements AppModule {
   private extendsRuntimeContext() {
     DefaultAppRuntimeContext.addExtensionMethod(
       "registerIpcMainHandler",
-      function (channel: string, handler: IpcMainHandler): void {
+      function (
+        channel: string,
+        handler: IpcMainHandler,
+        moduleName?: string
+      ): void {
+        moduleName ??= `<internal>`;
+
         this.updateRuntimeInfoSubValue(runtimeKeys.app_ipcMain, ["handlers"], {
-          [channel]: handler,
+          [channel]: [moduleName, handler],
         });
       }
     );
@@ -72,23 +83,40 @@ class AppModuleFederation extends AppModuleBase implements AppModule {
     );
 
     DefaultAppRuntimeContext.addExtensionMethod(
-      "getIpcMainHandler",
-      function (channel: string): IpcMainHandler | undefined {
-        const channelHandler = this.getRuntimeInfoSubValue(
+      "hasIpcMainHandler",
+      function (channel: string): boolean {
+        const channelHandlerObj = this.getRuntimeInfoSubValue(
           runtimeKeys.app_ipcMain,
           ["handlers", channel]
         );
 
-        if (channelHandler) return channelHandler as IpcMainHandler;
+        return !!channelHandlerObj;
       }
     );
 
     DefaultAppRuntimeContext.addExtensionMethod(
-      "hasIpcMainHandler",
-      function (channel: string): boolean {
-        const channelHandler = this.getIpcMainHandler(channel);
+      "getIpcMainHandler",
+      function (channel: string): IpcMainHandler | undefined {
+        const channelHandlerObj = this.getRuntimeInfoSubValue(
+          runtimeKeys.app_ipcMain,
+          ["handlers", channel]
+        );
 
-        return !!channelHandler;
+        if (channelHandlerObj)
+          return (channelHandlerObj as [string, IpcMainHandler])[1];
+      }
+    );
+
+    DefaultAppRuntimeContext.addExtensionMethod(
+      "getIpcMainHandleModule",
+      function (channel: string): string | undefined {
+        const channelHandlerObj = this.getRuntimeInfoSubValue(
+          runtimeKeys.app_ipcMain,
+          ["handlers", channel]
+        );
+
+        if (channelHandlerObj)
+          return (channelHandlerObj as [string, IpcMainHandler])[0];
       }
     );
 
@@ -100,7 +128,7 @@ class AppModuleFederation extends AppModuleBase implements AppModule {
           {};
 
         return Object.entries(ipcMainHandlerMap)
-          .filter(([, handler]) => !!handler)
+          .filter(([, handlerObj]) => !!handlerObj)
           .map(([channel]) => channel);
       }
     );
@@ -133,19 +161,23 @@ class AppModuleFederation extends AppModuleBase implements AppModule {
             channel,
           ]) ?? {};
 
+        const matchModuleNames: string[] = [];
+
         Object.entries(channelListenerMap).forEach(
           ([moduleName, moduleListener]) => {
-            if (moduleListener === listener) {
-              this.updateRuntimeInfoSubValue(
-                runtimeKeys.app_ipcMain,
-                ["listeners", channel],
-                {
-                  [moduleName]: null,
-                }
-              );
-            }
+            if (moduleListener === listener) matchModuleNames.push(moduleName);
           }
         );
+
+        matchModuleNames.forEach((moduleName) => {
+          this.updateRuntimeInfoSubValue(
+            runtimeKeys.app_ipcMain,
+            ["listeners", channel],
+            {
+              [moduleName]: null,
+            }
+          );
+        });
       }
     );
 
@@ -198,14 +230,17 @@ class AppModuleFederation extends AppModuleBase implements AppModule {
 
         const listenModules = Object.entries(channelListenerMap)
           .filter(([, listener]) => !!listener)
-          .map(([moduleName]) => moduleName);
+          .map(([moduleName]) =>
+            moduleName.startsWith("<internal>") ? "internal" : moduleName
+          );
+        const uniqueListenModules = [...new Set(listenModules)];
 
         if (exceptInternal) {
-          return listenModules.filter(
-            (moduleName) => !moduleName.startsWith("<internal>")
+          return uniqueListenModules.filter(
+            (moduleName) => moduleName !== "internal"
           );
         } else {
-          return listenModules;
+          return uniqueListenModules;
         }
       }
     );
@@ -225,10 +260,10 @@ class AppModuleFederation extends AppModuleBase implements AppModule {
     const _ipcMainRemoveHandler =
       contextIpcMain.removeHandler.bind(contextIpcMain);
 
-    contextIpcMain.handle = (channel, handler) => {
+    contextIpcMain.handle = (channel, handler, moduleName?: string) => {
       _ipcMainHandle(channel, handler);
 
-      this.runtimeContext.registerIpcMainHandler(channel, handler);
+      this.runtimeContext.registerIpcMainHandler(channel, handler, moduleName);
     };
 
     contextIpcMain.removeHandler = (channel) => {
@@ -247,6 +282,9 @@ class AppModuleFederation extends AppModuleBase implements AppModule {
 
       return new Error(`No handler found for channel: ${channel}`);
     };
+
+    contextIpcMain.handleModule = (channel: string) =>
+      this.runtimeContext.getIpcMainHandleModule(channel);
 
     contextIpcMain.handleChannels = () =>
       this.runtimeContext.listIpcMainHandleChannels();
@@ -298,6 +336,12 @@ class AppModuleFederation extends AppModuleBase implements AppModule {
 
       return contextIpcMain;
     };
+
+    contextIpcMain.hasListener = (channel, moduleName?: string) =>
+      this.runtimeContext.hasIpcMainListener(channel, moduleName);
+
+    contextIpcMain.listenModules = (channel, exceptInternal = false) =>
+      this.runtimeContext.listIpcMainListenModules(channel, exceptInternal);
   }
   // #endregion
 
@@ -323,6 +367,21 @@ class AppModuleFederation extends AppModuleBase implements AppModule {
         //Todo: 对应channel没有handler, 输出错误日志 到渲染进程console
       }
     );
+  }
+
+  private ensureChannelListeners(channel: string) {
+    const currentListenModules = this.contextIpcMain.listenModules(
+      channel,
+      true
+    );
+
+    //Todo: 获取 listen该channel的 remote modules
+  }
+
+  private ensureChannelHandler(channel: string) {
+    const currentHandleModule = this.contextIpcMain.handleModule(channel);
+
+    //Todo: 获取 handle该channel的 remote module
   }
 }
 

@@ -19,7 +19,7 @@ export abstract class AppPluginsBase extends AppModuleBase {
     this.pluginsPath = this.resolvePluginsPath();
   }
 
-  get pluginsRuntimeKey() {
+  protected get pluginsRuntimeKey() {
     return runtimeKeys.app_plugins;
   }
 

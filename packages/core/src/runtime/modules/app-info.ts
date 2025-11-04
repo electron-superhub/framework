@@ -9,6 +9,8 @@ import {
   AppWindowOptions,
   AppProtocolOptions,
   AppPublishOptions,
+  AppModulePublishOptions,
+  AppModuleFederationOptions,
 } from "../../types";
 import {
   AppModuleBase,
@@ -22,6 +24,8 @@ const ipcMainEvents_info = {
   app_getProtocolOptions: "app:get-protocol-options",
   app_getPublishOptions: "app:get-publish-options",
   app_getPluginsPublishOptions: "app:get-plugins-publish-options",
+  app_getModulesPublishOptions: "app:get-modules-publish-options",
+  app_getModulesFederationOptions: "app:get-modules-federation-options",
 } as const;
 
 type IpcMainEvents_info = typeof ipcMainEvents_info;
@@ -33,6 +37,8 @@ declare module "../core" {
     getAppProtocolOptions(): AppProtocolOptions;
     getAppPublishOptions(): AppPublishOptions;
     getAppPluginsPublishOptions(): AppPublishOptions;
+    getAppModulesPublishOptions(): AppModulePublishOptions;
+    getAppModulesFederationOptions(): AppModuleFederationOptions;
   }
 
   interface IpcMainEvents extends IpcMainEvents_info {}
@@ -93,7 +99,8 @@ class AppInfoResolver extends AppModuleBase implements AppModule {
       function (): AppMetaInfo {
         const appInfo = this.getRuntimeInfo(runtimeKeys.app_info) as AppInfo;
 
-        const { windows, protocol, publish, plugins, ...metaInfo } = appInfo;
+        const { windows, protocol, publish, plugins, modules, ...metaInfo } =
+          appInfo;
         return metaInfo as AppMetaInfo;
       }
     );
@@ -135,6 +142,26 @@ class AppInfoResolver extends AppModuleBase implements AppModule {
         ]) as AppPublishOptions;
       }
     );
+
+    DefaultAppRuntimeContext.addExtensionMethod(
+      "getAppModulesPublishOptions",
+      function (): AppModulePublishOptions {
+        return this.getRuntimeInfoSubValue(runtimeKeys.app_info, [
+          "modules",
+          "publish",
+        ]) as AppModulePublishOptions;
+      }
+    );
+
+    DefaultAppRuntimeContext.addExtensionMethod(
+      "getAppModulesFederationOptions",
+      function (): AppModuleFederationOptions {
+        return this.getRuntimeInfoSubValue(runtimeKeys.app_info, [
+          "modules",
+          "federation",
+        ]) as AppModuleFederationOptions;
+      }
+    );
   }
 
   private handleAppInfoEvents() {
@@ -158,6 +185,16 @@ class AppInfoResolver extends AppModuleBase implements AppModule {
     this.contextIpcMain.handle(
       ipcMainEvents_info.app_getPluginsPublishOptions,
       () => this.runtimeContext.getAppPluginsPublishOptions()
+    );
+
+    this.contextIpcMain.handle(
+      ipcMainEvents_info.app_getModulesPublishOptions,
+      () => this.runtimeContext.getAppModulesPublishOptions()
+    );
+
+    this.contextIpcMain.handle(
+      ipcMainEvents_info.app_getModulesFederationOptions,
+      () => this.runtimeContext.getAppModulesFederationOptions()
     );
   }
 
