@@ -7,7 +7,7 @@ import { AppPluginMetaInfo } from "@esho/core/types";
 import fs from "node:fs";
 
 import { cwdArgs } from "./_shared";
-import { hashFile, logger } from "../utils";
+import { hashFile, logger, txtInfo, txtSuccess } from "../utils";
 
 export default defineCommand({
   meta: {
@@ -63,12 +63,12 @@ export default defineCommand({
       process.exit(1); // packDir 目录下 没有找到 plugin.json 文件
     }
 
-    const pluginJsonStr = await fs.promises.readFile(pluginJsonPath, "utf-8");
+    const pluginJsonStr = await fs.promises.readFile(pluginJsonPath, "utf8");
     const pluginInfo = JSON.parse(pluginJsonStr) as AppPluginMetaInfo;
 
     if (pluginInfo.name && pluginInfo.version) {
       logger.info(
-        `packing plugin "${pluginInfo.name}@${pluginInfo.version}"...`
+        txtInfo(`packing plugin "${pluginInfo.name}@${pluginInfo.version}"...`)
       );
     } else {
       logger.error(`invalid name or version in plugin.json`);
@@ -80,7 +80,7 @@ export default defineCommand({
       ctx.args.platform,
       ctx.args.arch
     );
-    logger.info(`target platform arch: ${targetPlatformArch}`);
+    logger.info(txtInfo(`target platform arch: ${targetPlatformArch}`));
 
     const asarArchiveFileName = formatPluginAsarArchiveFileName(
       pluginInfo,
@@ -100,7 +100,7 @@ export default defineCommand({
     }
 
     logger.success(
-      `plugin packed, output asar archive: ${outputAsarArchivePath}`
+      txtSuccess(`plugin packed, output asar archive: ${outputAsarArchivePath}`)
     );
 
     const releaseInfoFileName =
@@ -134,7 +134,9 @@ export default defineCommand({
       process.exit(1);
     }
 
-    logger.success(`output plugin release info: ${releaseInfoFilePath}`);
+    logger.success(
+      txtSuccess(`output plugin release info: ${releaseInfoFilePath}`)
+    );
   },
 });
 

@@ -28,6 +28,11 @@ const templates = [
     virtualName: "#virtual/templates/installer/win/nsis-installer",
     relativePath: "installer/win/nsis-installer.tpl.nsh",
   },
+  {
+    name: "installer/win/nsis-installer-checkDir",
+    virtualName: "#virtual/templates/installer/win/nsis-installer-checkDir",
+    relativePath: "installer/win/nsis-installer-checkDir.tpl.nsh",
+  },
 ];
 
 const virtual_templates_plugins = templates.map((template) => {

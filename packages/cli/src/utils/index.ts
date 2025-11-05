@@ -6,3 +6,4 @@ export * from "./package";
 export * from "./npm";
 export * from "./template";
 export * from "./electron-builder";
+export * from "./types";

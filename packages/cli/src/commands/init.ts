@@ -16,6 +16,7 @@ import {
   renderLinuxAfterRemove,
   renderWinNsisInstaller,
   buildElectronBuilderConfig,
+  txtSuccess,
 } from "../utils";
 
 export default defineCommand({
@@ -35,7 +36,7 @@ export default defineCommand({
       process.exit(1); // cwd 目录下 没有找到 app.json 文件
     }
 
-    const appJsonStr = await fs.promises.readFile(appJsonPath, "utf-8");
+    const appJsonStr = await fs.promises.readFile(appJsonPath, "utf8");
     const appInfo = JSON.parse(appJsonStr) as AppInfo;
 
     const result = validateAppInfo(appInfo);
@@ -164,6 +165,6 @@ export default defineCommand({
       process.exit(1);
     }
 
-    logger.success(`electron-superhub app initialized`);
+    logger.success(txtSuccess("electron-superhub app initialized"));
   },
 });

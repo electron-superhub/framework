@@ -28,9 +28,15 @@ importers:
       '@npmcli/config':
         specifier: ^10.3.1
         version: 10.3.1
+      consola:
+        specifier: ^3.4.2
+        version: 3.4.2
       pacote:
         specifier: ^21.0.0
         version: 21.0.0
+      yaml:
+        specifier: ^2.8.1
+        version: 2.8.1
       zod:
         specifier: ^4.0.17
         version: 4.0.17
@@ -50,9 +56,6 @@ importers:
       citty:
         specifier: ^0.1.6
         version: 0.1.6
-      consola:
-        specifier: ^3.4.2
-        version: 3.4.2
       eta:
         specifier: ^3.5.0
         version: 3.5.0
@@ -2196,6 +2199,11 @@ packages:
     resolution: {integrity: sha512-YgvUTfwqyc7UXVMrB+SImsVYSmTS8X/tSrtdNZMImM+n7+QTriRXyXim0mBrTXNeqzVF0KWGgHPeiyViFFrNDw==}
     engines: {node: '>=18'}
 
+  yaml@2.8.1:
+    resolution: {integrity: sha512-lcYcMxX2PO9XMGvAJkJ3OsNMw+/7FKes7/hgerGUYWIoWu5j/+YQqcZr5JnPZWzOsEBgMbSbiSTn/dv/69Mkpw==}
+    engines: {node: '>= 14.6'}
+    hasBin: true
+
   yargs-parser@21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
@@ -4292,6 +4300,8 @@ snapshots:
   yallist@4.0.0: {}
 
   yallist@5.0.0: {}
+
+  yaml@2.8.1: {}
 
   yargs-parser@21.1.1: {}
 

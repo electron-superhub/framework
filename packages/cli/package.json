@@ -1,6 +1,6 @@
 {
   "name": "@esho/cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "electron-superhub cli tools",
   "author": {
     "name": "wanlitao",
@@ -46,7 +46,6 @@
     "@types/npmcli__config": "^6.0.3",
     "@types/pacote": "^11.1.8",
     "citty": "^0.1.6",
-    "consola": "^3.4.2",
     "eta": "^3.5.0",
     "pathe": "^2.0.3",
     "pkg-types": "^2.2.0",
@@ -57,7 +56,9 @@
     "@electron/asar": "^4.0.0",
     "@esho/core": "workspace:^",
     "@npmcli/config": "^10.3.1",
+    "consola": "^3.4.2",
     "pacote": "^21.0.0",
+    "yaml": "^2.8.1",
     "zod": "^4.0.17"
   }
 }

@@ -3,7 +3,7 @@ import { resolve } from "pathe";
 import { build, createEsho } from "@esho/core";
 
 import { cwdArgs } from "./_shared";
-import { logger } from "../utils";
+import { logger, txtSuccess } from "../utils";
 
 export default defineCommand({
   meta: {
@@ -20,6 +20,6 @@ export default defineCommand({
     await build(esho);
     await esho.close();
 
-    logger.success(`electron-superhub app development started`);
+    logger.success(txtSuccess("electron-superhub app development started"));
   },
 });

@@ -7,4 +7,5 @@ export const commands = {
   dev: () => import("./dev").then(_toCommandDef),
   build: () => import("./build").then(_toCommandDef),
   init: () => import("./init").then(_toCommandDef),
+  prebuild: () => import("./prebuild").then(_toCommandDef),
 };
